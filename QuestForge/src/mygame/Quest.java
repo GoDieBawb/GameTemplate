@@ -24,5 +24,17 @@ public abstract class Quest {
     }
   
   public abstract void act();
+  
+  public void finish(){
+      
+    if (player.currentLevel > player.bestLevel) {
+      player.saveScore(player.currentLevel, stateManager);
+      player.bestLevel = player.currentLevel;
+      }
+    
+    stateManager.getState(SceneManager.class).removeScene();
+    stateManager.getState(GuiManager.class).showMenu();
+    
+    }
     
   }

@@ -119,6 +119,7 @@ public class GuiManager extends AbstractAppState {
 
           String missionNum   = String.valueOf(buttonNum);
           String path         = "Scenes/Mission" + missionNum + ".j3o";
+          player.currentLevel = buttonNum;
           hideMenu();
           stateManager.getState(SceneManager.class).initScene(path);
           }

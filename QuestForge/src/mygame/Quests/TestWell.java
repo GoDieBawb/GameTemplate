@@ -23,6 +23,7 @@ public class TestWell extends Quest {
   public void act(){
       
     Quest testQuest = player.questList.getQuest("TestQuest");
+    String speech;
     
     if (testQuest == null) {
       testQuest = new TestQuest(stateManager, player);
@@ -30,31 +31,31 @@ public class TestWell extends Quest {
       testQuest.step = "Start";
       }
     
-    String step = testQuest.step;
-    
-    if (step.equals("Start")) {
-      gui.showAlert(name, "You shouldn't go messing around with someone's well");
+    if (testQuest.step.equals("Start")) {
+      speech = "You shouldn't go messing around with someone's well";
       }
     
-    else if (step.equals("GetWater")) {
+    else if (testQuest.step.equals("GetWater")) {
       if (player.inventory.contains("Bucket")) {
-        gui.showAlert(holder.getName(), "You fill the bucket with water");
+        speech = "You fill the bucket with water";
         testQuest.step = "HasWater";
         }
       
       else {
-        gui.showAlert(holder.getName(), "You'll probably need a bucket");
+        speech = "You'll probably need a bucket";
         }
         
       }
     
-    else if (step.equals("HasWater")) {
-      gui.showAlert(name, "You already have water");
+    else if (testQuest.step.equals("HasWater")) {
+      speech = "You already have water";
       }
     
     else {
-      gui.showAlert(name, "You don't need the well for anything now");
+      speech = "You don't need the well for anything now";
       }
+    
+    gui.showAlert(name, speech);
       
     }
     

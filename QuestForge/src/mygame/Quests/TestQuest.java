@@ -23,6 +23,7 @@ public class TestQuest extends Quest {
   public void act() {
       
     Quest testQuest = player.questList.getQuest("TestQuest");
+    String speech;
     
     if (testQuest == null) {
       testQuest = new TestQuest(stateManager, player);
@@ -32,23 +33,25 @@ public class TestQuest extends Quest {
     
     String step = testQuest.step;
     
-    if (step.equals("Start")) {
-      gui.showAlert(holder.getName(), "Hey can you get me a bucket of water from the well");
+    if (testQuest.step.equals("Start")) {
+      speech = "Hey can you get me a bucket of water from the well";
       testQuest.step = "GetWater";
       }
     
-    else if (step.equals("GetWater")) {
-      gui.showAlert(holder.getName(), "I thought I told you to get me some water");
+    else if (testQuest.step.equals("GetWater")) {
+      speech = "I thought I told you to get me some water";
       }
     
-    else if (step.equals("HasWater")) {
-      gui.showAlert(holder.getName(), "Wow that's exactly what I needed! Thannks for the water");
+    else if (testQuest.step.equals("HasWater")) {
+      speech = "Wow that's exactly what I needed! Thannks for the water";
       testQuest.step = "Finished";
       }
     
     else {
-      gui.showAlert(holder.getName(), "Thanks for bringing me that water");
+      speech = "Thanks for bringing me that water";
       }
+ 
+    gui.showAlert(name, speech);
       
     }
     

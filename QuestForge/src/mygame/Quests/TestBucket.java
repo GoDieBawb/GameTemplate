@@ -23,6 +23,7 @@ public class TestBucket extends Quest {
   public void act(){
       
     Quest testQuest = player.questList.getQuest("TestQuest");
+    String speech;
     
     if (testQuest == null) {
       testQuest = new TestQuest(stateManager, player);
@@ -30,17 +31,21 @@ public class TestBucket extends Quest {
       testQuest.step = "Start";
       }
     
-    String step = testQuest.step;
-    
-    if (step.equals("Start")) {
-      gui.showAlert(holder.getName(), "You shouldn't go messing around with someone's bucket");
+    if (testQuest.step.equals("Start")) {
+      speech = "You shouldn't go messing around with someone's bucket";
       }
     
-    else if (step.equals("GetWater")) {
+    else if (testQuest.step.equals("GetWater")) {
       holder.removeFromParent();
       player.inventory.add(holder.getName());
-      gui.showAlert(holder.getName(), "You pick up the bucket");
+      speech = "You pick up the bucket";
       }
+    
+    else {
+      speech = "Something went wrong here!";
+      }
+    
+    gui.showAlert(name, speech);
       
     }
     
